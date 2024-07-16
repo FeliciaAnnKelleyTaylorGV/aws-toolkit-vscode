@@ -268,5 +268,6 @@
     "AWS.amazonq.toggleCodeScan": "Toggle Auto-Scans",
     "AWS.command.dynamoDb.searchTables": "Search Tables",
     "AWS.command.dynamoDb.copyArn": "Copy ARN",
-    "AWS.command.dynamoDb.refreshExplorer": "Refresh DynamoDB Explorer"
+    "AWS.command.dynamoDb.refreshExplorer": "Refresh DynamoDB Explorer",
+    "AWS.command.dynamoDb.viewTable": "View DynamoDB Table"
 }

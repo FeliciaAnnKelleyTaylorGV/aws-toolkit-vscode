@@ -7,8 +7,8 @@ import { copyToClipboard } from '../../shared/utilities/messages'
 import { DynamoDbTableNode } from '../explorer/dynamoDbTableNode'
 import { DynamoDbClient } from '../../shared/clients/dynamoDbClient'
 
-export async function copyDynamoDbArn(node: DynamoDbTableNode) {
-    const response = await new DynamoDbClient(node.regionCode).getTableInformation({ TableName: node.dynamoDbtable })
+export async function copyDynamoDbArn(node: DynamoDbTableNode, client = DynamoDbClient) {
+    const response = await new client(node.regionCode).getTableInformation({ TableName: node.dynamoDbtable })
     if (response.TableArn !== undefined) {
         await copyToClipboard(response.TableArn, 'ARN')
     }
