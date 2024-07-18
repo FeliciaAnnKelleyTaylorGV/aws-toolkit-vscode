@@ -27,8 +27,8 @@ export class DynamoDbTableWebview extends VueWebview {
     public readonly id = 'dynamoDbTableView'
 
     public constructor(
-        private readonly channel: vscode.OutputChannel,
-        private readonly client: DynamoDbClient,
+        // private readonly channel: vscode.OutputChannel,
+        // private readonly client: DynamoDbClient,
         private readonly data: DynamoDbTableData
     ) {
         super(DynamoDbTableWebview.sourcePath)
@@ -52,7 +52,7 @@ export async function viewDynamoDbTable(context: ExtContext, node: DynamoDbTable
             void vscode.window.showInformationMessage(localize('AWS.dynamoDb.viewTable.items', 'No Items to display'))
             return
         }
-        const wv = new Panel(context.extensionContext, context.outputChannel, client, {
+        const wv = new Panel(context.extensionContext, {
             TableName: node.dynamoDbtable,
             VersionPrefix: new Date().toLocaleString(),
             TableItems: convertItemstoStringArray(tableItems),

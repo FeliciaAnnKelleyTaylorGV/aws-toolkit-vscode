@@ -5,7 +5,8 @@
 
 import { ExtContext } from '../shared/extensions'
 import { Commands } from '../shared/vscode/commands2'
-import { viewDynamoDbTable } from './webView/tableWebView'
+// import { viewDynamoDbTable } from './webView/tableWebView'
+import { viewDynamoDbTable } from './vue/tableView'
 import { copyDynamoDbArn } from './commands/sortDynamoDbTables'
 import { DynamoDbTableNode } from './explorer/dynamoDbTableNode'
 import { searchDynamoDbTables } from './commands/searchDynamoDbTables'

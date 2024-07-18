@@ -70,6 +70,7 @@
     },
     "dependencies": {
         "@aws-toolkits/telemetry": "^1.0.223",
+        "@vscode/webview-ui-toolkit": "^1.4.0",
         "vscode-nls": "^5.2.0",
         "vscode-nls-dev": "^4.0.4"
     }

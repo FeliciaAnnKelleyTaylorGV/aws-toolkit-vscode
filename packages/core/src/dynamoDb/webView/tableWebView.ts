@@ -23,7 +23,7 @@ export async function viewDynamoDbTable(
         const items = await client.scanTable({ TableName: node.dynamoDbtable })
         const tableColumnsNames = getTableColumnsNames(items)
         const tableItems = getTableItems(tableColumnsNames, items)
-        panel.webview.html = getWebviewContent(tableColumnsNames, tableItems)
+        panel.webview.html = getWebviewContent(node.dynamoDbtable, tableColumnsNames, tableItems)
     } catch (error) {
         panel.webview.html = `<h1>Error fetching DynamoDB items</h1><p>${error}</p>`
     }
@@ -67,15 +67,15 @@ function getAttributeValue(attribute: AttributeValue): { key: string; value: any
     return undefined
 }
 
-function getWebviewContent(tableColumnsNames: Set<string>, items: string[][]) {
+function getWebviewContent(tableName: string, tableColumnsNames: Set<string>, items: string[][]): string {
     const tableRows = items
         .map(item => {
-            const columns = Object.values(item)
-                .map(value => `<td>${value}</td>`)
-                .join('')
+            const columns = item.map(value => `<td>${value}</td>`).join('')
             return `<tr>${columns}</tr>`
         })
         .join('')
+
+    const lastRefreshed = new Date().toLocaleString()
 
     return `
         <!DOCTYPE html>
@@ -83,23 +83,17 @@ function getWebviewContent(tableColumnsNames: Set<string>, items: string[][]) {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>DynamoDB Items</title>
             <style>
-                table {
-                    width: 100%;
-                    border-collapse: collapse;
-                }
-                th, td {
-                    border: 1px solid #ddd;
-                    padding: 8px;
-                }
-                th {
-                    text-align: left;
-                }
+               @import '../vue/tableView.css';
             </style>
+            <!-- Include VS Code Webview UI Toolkit CSS (if needed) -->
+            <link rel="stylesheet" href="path/to/vscode-webview-ui-toolkit.css">
         </head>
         <body>
-            <h1>DynamoDB Items</h1>
+            <h1>${tableName}</h1>
+            <h3>${'Last refreshed on : ' + lastRefreshed}</h3>
+            <button>Scan</button>
+            <span class="codicon codicon-check"></span>
             <table>
                 <thead>
                     <tr>${Array.from(tableColumnsNames)
@@ -110,7 +104,7 @@ function getWebviewContent(tableColumnsNames: Set<string>, items: string[][]) {
                     ${tableRows}
                 </tbody>
             </table>
-        </body>
+            </body>
         </html>
     `
 }
