@@ -1,20 +1,5 @@
 {
     "report-dir": "../../coverage/amazonq",
     "reporter": ["lcov"],
-    "all": true,
-    "include": ["src/**", "dist/src/**", "../core/src/**", "../core/dist/src/**"],
-    "exclude": [
-        "dist/test/**",
-        "src/test/**",
-        "../core/dist/src/test/**",
-        "../core/dist/src/testE2E/**",
-        "../core/dist/src/testLint/**",
-        "../core/dist/src/testInteg/**",
-        "../core/dist/src/testFixtures/**",
-        "../core/src/test/**",
-        "../core/src/testE2E/**",
-        "../core/src/testLint/**",
-        "../core/src/testInteg/**",
-        "../core/src/testFixtures/**"
-    ]
+    "all": true
 }
