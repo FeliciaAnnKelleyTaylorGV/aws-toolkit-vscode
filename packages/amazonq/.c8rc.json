@@ -1,6 +1,5 @@
 {
     "report-dir": "../../coverage/amazonq",
     "reporter": ["lcov"],
-    "all": true,
-    "include": ["src/**", "dist/src/**", "../core/src/**", "../core/dist/src/**"]
+    "all": true
 }
