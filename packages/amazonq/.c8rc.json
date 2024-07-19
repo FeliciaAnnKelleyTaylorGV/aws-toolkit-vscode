@@ -1,5 +1,6 @@
 {
     "report-dir": "../../coverage/amazonq",
     "reporter": ["lcov"],
-    "all": true
+    "all": true,
+    "exclude": ["test/**", "dist/test/**"]
 }
